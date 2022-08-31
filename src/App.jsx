@@ -1,12 +1,15 @@
+import Budget from "./Components/Budget";
+import Remaning from "./Components/Remaning";
+import Spend from "./Components/Spend";
+
 function App() {
   return (
-    <div className="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10">
-      <p className="text-3xl text-gray-700 font-bold mb-5">
-        Welcome!
-      </p>
-      <p className="text-gray-500 text-lg">
-        React and Tailwind CSS in action
-      </p>
+    <div className="p-3 lg:px-6 lg:py-10">
+      <div className="flex flex-col gap-1 lg:flex-row lg:gap-2">
+      <Budget budget={'2000'}/>
+      <Remaning remaning={'1040'}/>   
+      <Spend spend={'960'}/>   
+      </div>
     </div>
   );
 }
