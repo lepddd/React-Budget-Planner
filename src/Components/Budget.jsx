@@ -3,7 +3,7 @@ import useBudgetStore from "../Stores/store";
 
 const Budget = () => {
   const budgetValue = useBudgetStore((state) => state.budget);
-  const setBudget = useBudgetStore((state) => state.setBudget);
+  const updateBudget = useBudgetStore((state) => state.updateBudget);
   const inputValue = useRef();
 
   const handleClick = () => {
@@ -13,7 +13,7 @@ const Budget = () => {
 
   const handleBlur = () => {
     inputValue.current.disabled = true;
-    setBudget(inputValue.current.value);
+    updateBudget(inputValue.current.value);
   };
 
   return (

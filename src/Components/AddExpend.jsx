@@ -2,19 +2,19 @@ import { useRef } from "react";
 import useBudgetStore from "../Stores/store";
 
 const AddExpend = () => {
-  const addExpense = useBudgetStore((state) => state.addExpense);
-  const allExpenses = useBudgetStore((state) => state.expenses);
+  const expenses = useBudgetStore(state => state.expenses)
+  const updateExpenses = useBudgetStore(state => state.updateExpense) 
 
   const inputName = useRef();
   const inputValue = useRef();
 
   const addExpenses = () => {
-    const add = {
+    const newExpense = {
       title: inputName.current.value,
       value: inputValue.current.value,
-      id: allExpenses.length,
+      id: expenses.length,
     };
-    addExpense(add);
+    updateExpenses(newExpense)
     inputName.current.value = inputValue.current.value = "";
   };
 
