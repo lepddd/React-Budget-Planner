@@ -7,7 +7,6 @@ import AddExpend from "./Components/AddExpend";
 
 function App() {
   const expenses = useBudgetStore((state) => state.expenses);
-  console.log(expenses)
 
   return (
     <div className="p-3 lg:px-6 lg:py-10">
