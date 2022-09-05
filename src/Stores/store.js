@@ -2,21 +2,18 @@ import create from "zustand";
 
 const useBudgetStore = create((set, get) => ({
   expenses: [],
-  budget: 4000,
+  filtered: "",
+  isOpen: false,
+  budget: 0,
   spend: 0,
   remainder: 0,
-  updateRemainder: (newSpend, newBudget) =>
-    set(() => ({ remainder: newBudget - newSpend })),
   //actions
+  updateModal: () => set((state) => ({isOpen: !state.isOpen})),  
+  updateRemainder : () => set((state) => ({ remainder: state.budget - state.spend })),
+  updateFiltered: (expenses) => set(() => ({ filtered: expenses })),
   updateSpend: (newSpend) => set({ spend: newSpend }),
-  updateExpense: (newExpense) =>
-    set((state) => {
-      return { expenses: [...state.expenses, newExpense] };
-    }),
-  deleteExpense: (idExpense) =>
-    set((state) => ({
-      expenses: state.expenses.filter((el) => el.id !== idExpense),
-    })),
+  updateBudget: (newBudget) => set({ budget: newBudget }),
+  updateExpense: (newExpense) => set({ expenses: newExpense }),
 }));
 
 export default useBudgetStore;

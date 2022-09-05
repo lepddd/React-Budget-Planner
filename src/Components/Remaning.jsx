@@ -1,19 +1,18 @@
 import { useEffect } from "react";
-import shallow from 'zustand/shallow'
+import shallow from "zustand/shallow";
 import useBudgetStore from "../Stores/store";
+
 const Remaning = () => {
-  const {spend,budget,remainder} = useBudgetStore(state => ({spend:state.spend,budget:state.budget,remainder:state.remainder}),shallow)
-  const update = useBudgetStore(state => state.updateRemainder)
+  const [remainder, spend, budget] = useBudgetStore(
+    (state) => [state.remainder, state.spend, state.budget],
+    shallow
+  );
 
-  function updateStore() {
-    return update(spend,budget);
-  }
+  const updateRemainder = useBudgetStore((state) => state.updateRemainder);
 
-  useEffect(()=>{
-    updateStore()
-  })
-
-  console.log(remainder)
+  useEffect(() => {
+    updateRemainder();
+  });
 
   return (
     <div className="w-full min-w-[296px] p-4 bg-green-200 rounded text-emerald-700 sm:p-6">

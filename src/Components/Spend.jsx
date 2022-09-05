@@ -1,12 +1,17 @@
 import { useEffect } from "react";
+import shallow from "zustand/shallow";
 import useBudgetStore from "../Stores/store";
+
 const Spend = () => {
-  const expenses = useBudgetStore((state) => state.expenses);
-  const update = useBudgetStore((state) => state.updateSpend);
-  const spend = useBudgetStore((state) => state.spend);
+  const [expenses, spend] = useBudgetStore(
+    (state) => [state.expenses, state.spend],
+    shallow
+  );
+
+  const updateSpend = useBudgetStore((state) => state.updateSpend);
 
   function updateStore() {
-    return update(
+    return updateSpend(
       expenses.reduce((acc, value) => Number(acc) + Number(value.value), 0)
     );
   }
