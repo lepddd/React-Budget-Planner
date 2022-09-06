@@ -1,9 +1,15 @@
 import { useRef } from "react";
+import shallow from "zustand/shallow";
 import useBudgetStore from "../Stores/store";
 
 const AddExpend = () => {
-  const expenses = useBudgetStore((state) => state.expenses);
   const updateExpenses = useBudgetStore((state) => state.updateExpense);
+  const updateIsValid = useBudgetStore((state) => state.updateValidValue);
+
+  const [expenses, isValid] = useBudgetStore(
+    (state) => [state.expenses, state.isValidValue],
+    shallow
+  );
 
   const regexp = /^[0-9]+$/;
 
@@ -21,12 +27,15 @@ const AddExpend = () => {
   const addExpenses = (e) => {
     e.preventDefault();
     if (inputName.current.value == "" || inputValue.current.value == "")
-      return alert("Empty Values");
+      return updateIsValid(false);
+
+    if (!inputValue.current.value.match(regexp)) return updateIsValid(false);
 
     if (inputValue.current.value.match(regexp)) {
-      const newExpense = createExpense()
+      const newExpense = createExpense();
       updateExpenses([...expenses, newExpense]);
       inputName.current.value = inputValue.current.value = "";
+      updateIsValid(true);
     }
   };
 
@@ -39,7 +48,7 @@ const AddExpend = () => {
           </label>
           <input
             ref={inputName}
-            className="p-2.5 border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]"
+            className={`p-2.5 border-slate-300  border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]`}
             type="text"
             name=""
             id=""
@@ -53,7 +62,9 @@ const AddExpend = () => {
           </label>
           <input
             ref={inputValue}
-            className="p-2.5 border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]"
+            className={`p-2.5 ${
+              isValid ? "border-slate-300" : "border-red-700"
+            } border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]`}
             type="text"
             name=""
             id=""
