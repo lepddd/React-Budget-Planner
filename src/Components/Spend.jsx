@@ -10,14 +10,10 @@ const Spend = () => {
 
   const updateSpend = useBudgetStore((state) => state.updateSpend);
 
-  function updateStore() {
-    return updateSpend(
+  useEffect(() => {
+    updateSpend(
       expenses.reduce((acc, value) => Number(acc) + Number(value.value), 0)
     );
-  }
-
-  useEffect(() => {
-    updateStore();
   });
 
   return (

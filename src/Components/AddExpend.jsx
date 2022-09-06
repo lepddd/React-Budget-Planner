@@ -13,7 +13,7 @@ const AddExpend = () => {
   const createExpense = () => {
     return {
       title: inputName.current.value,
-      value: Number(inputValue.current.value),
+      value: parseInt(inputValue.current.value),
       id: expenses.length,
     };
   };

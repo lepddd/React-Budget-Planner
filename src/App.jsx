@@ -5,6 +5,7 @@ import FilterInput from "./Components/FilterInput";
 import AddExpend from "./Components/AddExpend";
 import Expenses from "./Components/Expenses";
 import Modal from "./Components/Modal";
+import TitleSection from "./Components/TitleSection";
 
 function App() {
   return (
@@ -18,18 +19,14 @@ function App() {
         </div>
 
         <div>
-          <p className="text-gray-700 text-2xl font-medium font-sans mb-2">
-            Expenses
-          </p>
+          <TitleSection title={"Expenses"} />
           <FilterInput />
         </div>
 
         <Expenses />
 
         <div>
-          <p className="text-gray-700 text-2xl font-medium font-sans mb-2">
-            Add Expenses
-          </p>
+          <TitleSection title={"Add Expenses"} />
           <AddExpend />
         </div>
       </div>
