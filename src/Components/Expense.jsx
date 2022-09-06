@@ -2,12 +2,12 @@ import { Icon } from "@iconify/react";
 import useBudgetStore from "../Stores/store";
 
 const Expense = ({ title, value, id }) => {
-  const expenses = useBudgetStore(state => state.expenses)
+  const expenses = useBudgetStore((state) => state.expenses);
   const update = useBudgetStore((state) => state.updateExpense);
 
   const deleteExpense = (id) => {
-    const deleted = expenses.filter(el => el.id !== id)
-    update(deleted)
+    const deleted = expenses.filter((el) => el.id !== id);
+    update(deleted);
   };
 
   return (

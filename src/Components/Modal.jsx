@@ -5,10 +5,10 @@ import { useRef } from "react";
 
 const Modal = () => {
   const [isOpen, isValid] = useBudgetStore(
-    (state) => [state.isOpen, state.isValidValue],
+    (state) => [state.isOpen, state.isValidBudget],
     shallow
   );
-  
+
   const updateModal = useBudgetStore((state) => state.updateModal);
   const updateBudget = useBudgetStore((state) => state.updateBudget);
   const updateIsValid = useBudgetStore((state) => state.updateValidBudget);
@@ -22,11 +22,14 @@ const Modal = () => {
 
     if (!inputValue.current.value.match(regexp)) return updateIsValid(false);
 
-    console.log(isValid);
-
     updateBudget(inputValue.current.value);
-    updateModal();
     updateIsValid(true);
+    updateModal();
+  };
+
+  const closeModal = () => {
+    updateIsValid(true);
+    updateModal();
   };
 
   return (
@@ -35,7 +38,7 @@ const Modal = () => {
         <div className="w-full h-screen bg-neutral-900 bg-opacity-90 absolute flex items-center justify-center">
           <div className="p-5 bg-white rounded relative">
             <button
-              onClick={updateModal}
+              onClick={closeModal}
               className="bg-white absolute -top-3 -right-3 cursor-pointer rounded-full"
             >
               <Icon
