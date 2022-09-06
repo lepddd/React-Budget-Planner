@@ -40,48 +40,40 @@ const AddExpend = () => {
   };
 
   return (
-    <div>
-      <form>
-        <div className="my-1.5">
-          <label className="text-base text-gray-700" htmlFor="">
-            name
-          </label>
+    <form>
+      <div className="flex flex-col mb-1.5 lg:flex-row gap-1.5">
+        <div className="">
+          <label className="text-base text-gray-700 block">name</label>
           <input
             ref={inputName}
-            className={`p-2.5 border-slate-300  border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]`}
+            className={`p-2.5 border-slate-300  border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px] lg:w-40`}
             type="text"
-            name=""
-            id=""
             placeholder="Enter name"
           />
         </div>
 
-        <div className="my-1.5">
-          <label className="text-base text-gray-700" htmlFor="">
-            value
-          </label>
+        <div className="">
+          <label className="text-base text-gray-700 block">value</label>
           <input
             ref={inputValue}
             className={`p-2.5 ${
               isValid ? "border-slate-300" : "border-red-700"
-            } border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px]`}
+            } border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px] lg:w-40`}
             type="text"
-            name=""
-            id=""
             placeholder="Enter value"
           />
         </div>
+      </div>
 
-        <button
-          onClick={(e) => addExpenses(e)}
-          className={
-            "py-2 px-5 block w-full bg-blue-600 text-slate-50 rounded font-sans sm:text-xl"
-          }
-        >
-          Save
-        </button>
-      </form>
-    </div>
+      <button
+        onClick={(e) => addExpenses(e)}
+        className={
+          "py-2 px-5 block w-full bg-blue-600 text-slate-50 rounded font-sans sm:text-xl lg:w-auto"
+        }
+      >
+        Save
+      </button>
+    </form>
   );
 };
 

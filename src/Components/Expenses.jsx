@@ -22,13 +22,7 @@ const Expenses = () => {
   return (
     <div className="my-4 h-[240px] overflow-auto min-w-[296px]">
       {allExpenses.map((el) => (
-        <Expense
-          key={el.id}
-          title={el.title}
-          value={el.value}
-          id={el.id}
-          isVisible={true}
-        />
+        <Expense key={el.id} title={el.title} value={el.value} id={el.id} />
       ))}
     </div>
   );
