@@ -9,10 +9,10 @@ function App() {
     <>
       <Modal />
       <div className="p-3 lg:px-6 lg:py-10">
-        <Header/>
-        <FilterBox/>
-        <Expenses />        
-        <AddExpendBox/>        
+        <Header />
+        <FilterBox />
+        <Expenses />
+        <AddExpendBox />
       </div>
     </>
   );

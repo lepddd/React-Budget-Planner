@@ -13,28 +13,26 @@ const AddExpend = () => {
 
   const regexp = /^[0-9]+$/;
 
-  const inputName = useRef();
-  const inputValue = useRef();
+  const refName = useRef();
+  const refValue = useRef();
 
-  const createExpense = () => {
-    return {
-      title: inputName.current.value,
-      value: parseInt(inputValue.current.value),
-      id: expenses.length,
-    };
+  const createExpense = (title, value, id) => {
+    return { title: title, value: parseInt(value), id: id };
   };
 
   const addExpenses = (e) => {
     e.preventDefault();
-    if (inputName.current.value == "" || inputValue.current.value == "")
-      return updateIsValid(false);
+    if (refName.current.value == "" || refValue.current.value == "")
+      return alert('Input is Empty!');
 
-    if (!inputValue.current.value.match(regexp)) return updateIsValid(false);
+    if (!refValue.current.value.match(regexp)) return updateIsValid(false);
 
-    if (inputValue.current.value.match(regexp)) {
-      const newExpense = createExpense();
+    if (refValue.current.value.match(regexp)) {
+      const name = refName.current.value;
+      const value = refValue.current.value;
+      const newExpense = createExpense(name, value, expenses.length);
       updateExpenses([...expenses, newExpense]);
-      inputName.current.value = inputValue.current.value = "";
+      refName.current.value = refValue.current.value = "";
       updateIsValid(true);
     }
   };
@@ -45,7 +43,7 @@ const AddExpend = () => {
         <div className="">
           <label className="text-base text-gray-700 block">name</label>
           <input
-            ref={inputName}
+            ref={refName}
             className={`p-2.5 border-slate-300  border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px] lg:w-40`}
             type="text"
             placeholder="Enter name"
@@ -55,7 +53,7 @@ const AddExpend = () => {
         <div className="">
           <label className="text-base text-gray-700 block">value</label>
           <input
-            ref={inputValue}
+            ref={refValue}
             className={`p-2.5 ${
               isValid ? "border-slate-300" : "border-red-700"
             } border-slate-300 border rounded text-sm text-slate-600 w-full outline-slate-400 mt-1.5 min-w-[296px] lg:w-40`}

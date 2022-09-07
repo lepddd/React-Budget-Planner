@@ -8,16 +8,18 @@ const Expenses = () => {
   let allExpenses = [];
 
   const updateFilter = () => {
-    if (filter.length < 1) return (allExpenses = expenses);
+    if (filter.length < 1) return expenses;
 
     const filterWord = filter.toLowerCase();
     expenses.forEach((el) => {
-      if (el.title.toLowerCase().includes(filterWord))
-        return allExpenses.push(el);
+      if (el.title.toLowerCase().includes(filterWord)) {
+        allExpenses.push(el);
+      }
     });
+    return allExpenses;
   };
 
-  updateFilter();
+  allExpenses = updateFilter();
 
   return (
     <div className="my-4 h-[240px] overflow-auto min-w-[296px]">

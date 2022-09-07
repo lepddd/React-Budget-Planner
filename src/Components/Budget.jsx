@@ -1,6 +1,7 @@
 import useBudgetStore from "../Stores/store";
 
 const Budget = () => {
+  //open and close modal
   const updateModal = useBudgetStore((state) => state.updateModal);
 
   const budgetValue = useBudgetStore((state) => state.budget);
