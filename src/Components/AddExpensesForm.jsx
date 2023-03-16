@@ -29,7 +29,6 @@ export const AddExpensesForm = () => {
     setExpense("");
     setValue("");
     setExpenses(newExpense);
-    console.log("Add-Expense-Funtion");
   };
   return (
     <div className="flex flex-col gap-4 p-5">

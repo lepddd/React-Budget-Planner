@@ -11,8 +11,6 @@ export const ExpensesList = () => {
     expense.title.toLowerCase().includes(filter.toLowerCase())
   );
 
-  console.log(filtered);
-
   return (
     <div className="flex flex-col p-5 gap-4 min-w-min">
       <div className="flex justify-between items-center">
