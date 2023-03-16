@@ -1,19 +1,16 @@
-import Header from "./Components/Header";
-import FilterBox from "./Components/FilterBox";
-import Expenses from "./Components/Expenses";
-import Modal from "./Components/Modal";
-import AddExpendBox from "./Components/AddExpendBox";
+import { AddExpensesForm } from "./Components/AddExpensesForm";
+import { ExpensesList } from "./Components/ExpensesList";
+import { Summary } from "./Components/Summary";
+import useBudgetStore from "./Stores/store";
 
 function App() {
+  const expenses = useBudgetStore((state) => state.expenses);
+
   return (
     <>
-      <Modal />
-      <div className="p-3 lg:px-6 lg:py-10">
-        <Header />
-        <FilterBox />
-        <Expenses />
-        <AddExpendBox />
-      </div>
+      <Summary />
+      <AddExpensesForm />
+      <ExpensesList expenses={expenses} />
     </>
   );
 }

@@ -1,24 +1,37 @@
 import create from "zustand";
+import { nanoid } from "nanoid";
 
-const useBudgetStore = create((set) => ({
-  expenses: [],
-  filtered: "",
-  isValidBudget: true,
-  isValidValue: true,
-  isOpen: false,
+const useBudgetStore = create((set, get) => ({
+  expenses: [
+    {
+      id: nanoid(),
+      date: "2023-03-11",
+      title: "Gym",
+      amount: "50",
+    },
+    {
+      id: nanoid(),
+      date: "2023-03-12",
+      title: "Petshop",
+      amount: "80",
+    },
+    {
+      id: nanoid(),
+      date: "2023-03-13",
+      title: "Dinner",
+      amount: "30",
+    },
+  ],
   budget: 0,
-  spend: 0,
-  remainder: 0,
   //actions
-  updateValidValue: (boolean) => set({ isValidValue: boolean }),
-  updateValidBudget: (boolean) => set({ isValidBudget: boolean }),
-  updateModal: () => set((state) => ({ isOpen: !state.isOpen })),
-  updateRemainder: () =>
-    set((state) => ({ remainder: state.budget - state.spend })),
-  updateFiltered: (expenses) => set(() => ({ filtered: expenses })),
-  updateSpend: (newSpend) => set({ spend: newSpend }),
-  updateBudget: (newBudget) => set({ budget: newBudget }),
-  updateExpense: (newExpense) => set({ expenses: newExpense }),
+  setBudget: (newBudget) => set({ budget: newBudget }),
+  setExpenses: (newExpense) =>
+    set((state) => ({ expenses: [...state.expenses, newExpense] })),
+  deleteExpense: (id) => {
+    const result = get().expenses.filter((expense) => expense.id !== id);
+
+    set({ expenses: result });
+  },
 }));
 
 export default useBudgetStore;
